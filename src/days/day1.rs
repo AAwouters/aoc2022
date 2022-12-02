@@ -1,4 +1,4 @@
-use crate::util::{Parser, parse_input_string, parse_input_file};
+use crate::util::util_imports::*;
 
 type Calories = u32;
 
@@ -47,9 +47,12 @@ const TEST_STRING: &str = "1000
 
 const INPUT_FILE: &str = "./input/day1.txt";
 
-pub fn day1_part1_test() -> Calories {
+#[test]
+fn day1_part1_test() {
     let elves = parse_input_string::<Elf>(TEST_STRING.to_string()).unwrap();
-    elves.iter().map(|elf| elf.calories.iter().sum::<Calories>()).max().unwrap()
+    let result = elves.iter().map(|elf| elf.calories.iter().sum::<Calories>()).max().unwrap();
+    let answer: u32 = 24000;
+    assert_eq!(result, answer);
 }
 
 pub fn day1_part1() -> Calories {
@@ -57,13 +60,15 @@ pub fn day1_part1() -> Calories {
     elves.iter().map(|elf| elf.calories.iter().sum::<Calories>()).max().unwrap()
 }
 
-pub fn day1_part2_test() -> Calories {
+#[test]
+fn day1_part2_test() {
     let elves = parse_input_string::<Elf>(TEST_STRING.to_string()).unwrap();
     let mut sums = elves.iter().map(|elf| elf.calories.iter().sum::<Calories>()).collect::<Vec<Calories>>();
     sums.sort_unstable();
     sums.reverse();
-    let top3_sum = sums.iter().take(3).sum();
-    top3_sum
+    let top3_sum: u32 = sums.iter().take(3).sum();
+    let answer: u32 = 45000;
+    assert_eq!(top3_sum, answer);
 }
 
 pub fn day1_part2() -> Calories {

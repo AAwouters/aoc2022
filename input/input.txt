@@ -1,2 +1,0 @@
-I've gitignored my input files
-Place your files in this folder.
